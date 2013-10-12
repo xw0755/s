@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{78376C08-6A63-4FB4-9EF4-170E27DD05EA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApplication1</RootNamespace>
+    <AssemblyName>WebApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="HTMLPage1.htm" />
+    <Content Include="ol\animation.js" />
+    <Content Include="ol\array.js" />
+    <Content Include="ol\attribution.js" />
+    <Content Include="ol\browserfeature.js" />
+    <Content Include="ol\canvas\canvas.js" />
+    <Content Include="ol\collection.js" />
+    <Content Include="ol\color.js" />
+    <Content Include="ol\constraints.js" />
+    <Content Include="ol\control\attributioncontrol.js" />
+    <Content Include="ol\control\control.js" />
+    <Content Include="ol\control\controldefaults.js" />
+    <Content Include="ol\control\dragboxcontrol.js" />
+    <Content Include="ol\control\fullscreencontrol.js" />
+    <Content Include="ol\control\logocontrol.js" />
+    <Content Include="ol\control\mousepositioncontrol.js" />
+    <Content Include="ol\control\scalelinecontrol.js" />
+    <Content Include="ol\control\zoomcontrol.js" />
+    <Content Include="ol\control\zoomslidercontrol.js" />
+    <Content Include="ol\control\zoomtoextentcontrol.js" />
+    <Content Include="ol\coordinate.js" />
+    <Content Include="ol\css.js" />
+    <Content Include="ol\deviceorientation.js" />
+    <Content Include="ol\dom\dom.js" />
+    <Content Include="ol\dom\input.js" />
+    <Content Include="ol\easing.js" />
+    <Content Include="ol\ellipsoid\bessel1841ellipsoid.js" />
+    <Content Include="ol\ellipsoid\ellipsoid.js" />
+    <Content Include="ol\ellipsoid\wgs84ellipsoid.js" />
+    <Content Include="ol\expr\expression.js" />
+    <Content Include="ol\expr\expressions.js" />
+    <Content Include="ol\expr\lexer.js" />
+    <Content Include="ol\expr\parser.js" />
+    <Content Include="ol\extent.js" />
+    <Content Include="ol\feature.js" />
+    <Content Include="ol\framestate.js" />
+    <Content Include="ol\geolocation.js" />
+    <Content Include="ol\geom2\geom2.js" />
+    <Content Include="ol\geom2\linestringcollection.js" />
+    <Content Include="ol\geom2\pointcollection.js" />
+    <Content Include="ol\geom\abstractcollection.js" />
+    <Content Include="ol\geom\base.js" />
+    <Content Include="ol\geom\geometry.js" />
+    <Content Include="ol\geom\geometrycollection.js" />
+    <Content Include="ol\geom\linearring.js" />
+    <Content Include="ol\geom\linestring.js" />
+    <Content Include="ol\geom\multilinestring.js" />
+    <Content Include="ol\geom\multipoint.js" />
+    <Content Include="ol\geom\multipolygon.js" />
+    <Content Include="ol\geom\point.js" />
+    <Content Include="ol\geom\polygon.js" />
+    <Content Include="ol\geom\sharedvertices.js" />
+    <Content Include="ol\image.js" />
+    <Content Include="ol\imagetile.js" />
+    <Content Include="ol\imageurlfunction.js" />
+    <Content Include="ol\interaction\condition.js" />
+    <Content Include="ol\interaction\doubleclickzoominteraction.js" />
+    <Content Include="ol\interaction\draginteraction.js" />
+    <Content Include="ol\interaction\dragpaninteraction.js" />
+    <Content Include="ol\interaction\dragrotateandzoominteraction.js" />
+    <Content Include="ol\interaction\dragrotateinteraction.js" />
+    <Content Include="ol\interaction\dragzoominteraction.js" />
+    <Content Include="ol\interaction\interaction.js" />
+    <Content Include="ol\interaction\interactiondefaults.js" />
+    <Content Include="ol\interaction\keyboardpaninteraction.js" />
+    <Content Include="ol\interaction\keyboardzoominteraction.js" />
+    <Content Include="ol\interaction\mousewheelzoominteraction.js" />
+    <Content Include="ol\interaction\selectinteraction.js" />
+    <Content Include="ol\interaction\touchinteraction.js" />
+    <Content Include="ol\interaction\touchpaninteraction.js" />
+    <Content Include="ol\interaction\touchrotateinteraction.js" />
+    <Content Include="ol\interaction\touchzoominteraction.js" />
+    <Content Include="ol\iview.js" />
+    <Content Include="ol\iview2d.js" />
+    <Content Include="ol\iview3d.js" />
+    <Content Include="ol\kinetic.js" />
+    <Content Include="ol\layer\imagelayer.js" />
+    <Content Include="ol\layer\layer.js" />
+    <Content Include="ol\layer\layerbase.js" />
+    <Content Include="ol\layer\layergroup.js" />
+    <Content Include="ol\layer\tilelayer.js" />
+    <Content Include="ol\layer\vectorlayer.js" />
+    <Content Include="ol\layer\vectorlayer2.js" />
+    <Content Include="ol\layer\vectorlayerrenderintent.js" />
+    <Content Include="ol\map.js" />
+    <Content Include="ol\mapbrowserevent.js" />
+    <Content Include="ol\mapevent.js" />
+    <Content Include="ol\math.js" />
+    <Content Include="ol\object.js" />
+    <Content Include="ol\ol.js" />
+    <Content Include="ol\overlay.js" />
+    <Content Include="ol\parser\featureparser.js" />
+    <Content Include="ol\parser\geojson.js" />
+    <Content Include="ol\parser\gpx.js" />
+    <Content Include="ol\parser\kml.js" />
+    <Content Include="ol\parser\ogc\exceptionreport.js" />
+    <Content Include="ol\parser\ogc\filter.js" />
+    <Content Include="ol\parser\ogc\filter_v1.js" />
+    <Content Include="ol\parser\ogc\filter_v1_0_0.js" />
+    <Content Include="ol\parser\ogc\filter_v1_1_0.js" />
+    <Content Include="ol\parser\ogc\gml.js" />
+    <Content Include="ol\parser\ogc\gml_v2.js" />
+    <Content Include="ol\parser\ogc\gml_v3.js" />
+    <Content Include="ol\parser\ogc\owscommon_v1.js" />
+    <Content Include="ol\parser\ogc\owscommon_v1_1_0.js" />
+    <Content Include="ol\parser\ogc\versioned.js" />
+    <Content Include="ol\parser\ogc\wmscapabilities.js" />
+    <Content Include="ol\parser\ogc\wmscapabilities_v1.js" />
+    <Content Include="ol\parser\ogc\wmscapabilities_v1_0_0.js" />
+    <Content Include="ol\parser\ogc\wmscapabilities_v1_1.js" />
+    <Content Include="ol\parser\ogc\wmscapabilities_v1_1_0.js" />
+    <Content Include="ol\parser\ogc\wmscapabilities_v1_1_1.js" />
+    <Content Include="ol\parser\ogc\wmscapabilities_v1_1_1_WMSC.js" />
+    <Content Include="ol\parser\ogc\wmscapabilities_v1_3_0.js" />
+    <Content Include="ol\parser\ogc\wmtscapabilities.js" />
+    <Content Include="ol\parser\ogc\wmtscapabilities_v1_0_0.js" />
+    <Content Include="ol\parser\parser.js" />
+    <Content Include="ol\parser\polyline.js" />
+    <Content Include="ol\parser\topojson.js" />
+    <Content Include="ol\parser\wkt.js" />
+    <Content Include="ol\parser\xml.js" />
+    <Content Include="ol\pixel.js" />
+    <Content Include="ol\proj\chprojection.js" />
+    <Content Include="ol\proj\common.js" />
+    <Content Include="ol\proj\epsg3857projection.js" />
+    <Content Include="ol\proj\epsg4326projection.js" />
+    <Content Include="ol\proj\proj.js" />
+    <Content Include="ol\renderer\canvas\canvasimagelayerrenderer.js" />
+    <Content Include="ol\renderer\canvas\canvaslayerrenderer.js" />
+    <Content Include="ol\renderer\canvas\canvasmaprenderer.js" />
+    <Content Include="ol\renderer\canvas\canvasrenderer.js" />
+    <Content Include="ol\renderer\canvas\canvastilelayerrenderer.js" />
+    <Content Include="ol\renderer\canvas\canvasvectorlayerrenderer.js" />
+    <Content Include="ol\renderer\canvas\canvasvectorrenderer.js" />
+    <Content Include="ol\renderer\dom\domimagelayerrenderer.js" />
+    <Content Include="ol\renderer\dom\domlayerrenderer.js" />
+    <Content Include="ol\renderer\dom\dommaprenderer.js" />
+    <Content Include="ol\renderer\dom\domrenderer.js" />
+    <Content Include="ol\renderer\dom\domtilelayerrenderer.js" />
+    <Content Include="ol\renderer\layerrenderer.js" />
+    <Content Include="ol\renderer\maprenderer.js" />
+    <Content Include="ol\renderer\webgl\webglimagelayerrenderer.js" />
+    <Content Include="ol\renderer\webgl\webgllayerrenderer.js" />
+    <Content Include="ol\renderer\webgl\webglmapcolorshader.js" />
+    <Content Include="ol\renderer\webgl\webglmapdefaultshader.js" />
+    <Content Include="ol\renderer\webgl\webglmaprenderer.js" />
+    <Content Include="ol\renderer\webgl\webglrenderer.js" />
+    <Content Include="ol\renderer\webgl\webgltilelayerrenderer.js" />
+    <Content Include="ol\renderer\webgl\webgltilelayershader.js" />
+    <Content Include="ol\renderer\webgl\webglvectorlayer2linestringcollectionshader.js" />
+    <Content Include="ol\renderer\webgl\webglvectorlayer2pointcollectionshader.js" />
+    <Content Include="ol\renderer\webgl\webglvectorlayer2renderer.js" />
+    <Content Include="ol\resolutionconstraint.js" />
+    <Content Include="ol\rotationconstraint.js" />
+    <Content Include="ol\size.js" />
+    <Content Include="ol\source\bingmapssource.js" />
+    <Content Include="ol\source\debugtilesource.js" />
+    <Content Include="ol\source\featureinfosource.js" />
+    <Content Include="ol\source\imagesource.js" />
+    <Content Include="ol\source\imagetilesource.js" />
+    <Content Include="ol\source\mapquestsource.js" />
+    <Content Include="ol\source\osmsource.js" />
+    <Content Include="ol\source\singleimagewmssource.js" />
+    <Content Include="ol\source\source.js" />
+    <Content Include="ol\source\stamensource.js" />
+    <Content Include="ol\source\staticimagesource.js" />
+    <Content Include="ol\source\tiledwmssource.js" />
+    <Content Include="ol\source\tilejsonsource.js" />
+    <Content Include="ol\source\tilesource.js" />
+    <Content Include="ol\source\vectorsource.js" />
+    <Content Include="ol\source\vectorsource2.js" />
+    <Content Include="ol\source\wmssource.js" />
+    <Content Include="ol\source\wmtssource.js" />
+    <Content Include="ol\source\xyzsource.js" />
+    <Content Include="ol\sphere\normal.js" />
+    <Content Include="ol\sphere\sphere.js" />
+    <Content Include="ol\sphere\wgs84sphere.js" />
+    <Content Include="ol\structs\buffer.js" />
+    <Content Include="ol\structs\integerset.js" />
+    <Content Include="ol\structs\lrucache.js" />
+    <Content Include="ol\structs\priorityqueue.js" />
+    <Content Include="ol\structs\rtree.js" />
+    <Content Include="ol\style\fillsymbolizer.js" />
+    <Content Include="ol\style\iconliteral.js" />
+    <Content Include="ol\style\iconsymbolizer.js" />
+    <Content Include="ol\style\lineliteral.js" />
+    <Content Include="ol\style\literal.js" />
+    <Content Include="ol\style\pointliteral.js" />
+    <Content Include="ol\style\pointsymbolizer.js" />
+    <Content Include="ol\style\polygonliteral.js" />
+    <Content Include="ol\style\rule.js" />
+    <Content Include="ol\style\shapeliteral.js" />
+    <Content Include="ol\style\shapesymbolizer.js" />
+    <Content Include="ol\style\strokesymbolizer.js" />
+    <Content Include="ol\style\style.js" />
+    <Content Include="ol\style\symbolizer.js" />
+    <Content Include="ol\style\textliteral.js" />
+    <Content Include="ol\style\textsymbolizer.js" />
+    <Content Include="ol\tile.js" />
+    <Content Include="ol\tilecache.js" />
+    <Content Include="ol\tilecoord.js" />
+    <Content Include="ol\tilegrid\tilegrid.js" />
+    <Content Include="ol\tilegrid\wmtstilegrid.js" />
+    <Content Include="ol\tilegrid\xyztilegrid.js" />
+    <Content Include="ol\tilequeue.js" />
+    <Content Include="ol\tilerange.js" />
+    <Content Include="ol\tileurlfunction.js" />
+    <Content Include="ol\transformfunction.js" />
+    <Content Include="ol\vec\mat4.js" />
+    <Content Include="ol\view.js" />
+    <Content Include="ol\view2d.js" />
+    <Content Include="ol\webgl\shader.js" />
+    <Content Include="ol\webgl\webgl.js" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ol\animation.exports" />
+    <None Include="ol\animation.jsdoc" />
+    <None Include="ol\attribution.exports" />
+    <None Include="ol\canvas\canvas.exports" />
+    <None Include="ol\collection.exports" />
+    <None Include="ol\control.jsdoc" />
+    <None Include="ol\control\attributioncontrol.exports" />
+    <None Include="ol\control\control.exports" />
+    <None Include="ol\control\controldefaults.exports" />
+    <None Include="ol\control\fullscreencontrol.exports" />
+    <None Include="ol\control\logocontrol.exports" />
+    <None Include="ol\control\mousepositioncontrol.exports" />
+    <None Include="ol\control\scalelinecontrol.exports" />
+    <None Include="ol\control\zoomcontrol.exports" />
+    <None Include="ol\control\zoomslidercontrol.exports" />
+    <None Include="ol\control\zoomtoextentcontrol.exports" />
+    <None Include="ol\coordinate.exports" />
+    <None Include="ol\deviceorientation.exports" />
+    <None Include="ol\dom\input.exports" />
+    <None Include="ol\easing.exports" />
+    <None Include="ol\expr.exports" />
+    <None Include="ol\expr.jsdoc" />
+    <None Include="ol\extent.exports" />
+    <None Include="ol\feature.exports" />
+    <None Include="ol\geolocation.exports" />
+    <None Include="ol\geom.exports" />
+    <None Include="ol\geom.jsdoc" />
+    <None Include="ol\geom2\linestringcollection.exports" />
+    <None Include="ol\geom2\pointcollection.exports" />
+    <None Include="ol\interaction\condition.exports" />
+    <None Include="ol\interaction\dragrotateandzoom.exports" />
+    <None Include="ol\interaction\interactiondefaults.exports" />
+    <None Include="ol\interaction\selectinteraction.exports" />
+    <None Include="ol\layer.jsdoc" />
+    <None Include="ol\layer\imagelayer.exports" />
+    <None Include="ol\layer\layer.exports" />
+    <None Include="ol\layer\layergroup.exports" />
+    <None Include="ol\layer\tilelayer.exports" />
+    <None Include="ol\layer\vectorlayer.exports" />
+    <None Include="ol\layer\vectorlayer2.exports" />
+    <None Include="ol\map.exports" />
+    <None Include="ol\mapbrowserevent.exports" />
+    <None Include="ol\object.exports" />
+    <None Include="ol\ol.exports" />
+    <None Include="ol\overlay.exports" />
+    <None Include="ol\parser.jsdoc" />
+    <None Include="ol\parser\geojson.exports" />
+    <None Include="ol\parser\gpx.exports" />
+    <None Include="ol\parser\kml.exports" />
+    <None Include="ol\parser\ogc\gml.exports" />
+    <None Include="ol\parser\ogc\wmscapabilities.exports" />
+    <None Include="ol\parser\ogc\wmtscapabilities.exports" />
+    <None Include="ol\parser\topojson.exports" />
+    <None Include="ol\parser\wkt.exports" />
+    <None Include="ol\proj.exports" />
+    <None Include="ol\proj.jsdoc" />
+    <None Include="ol\renderer\canvas\canvasmaprenderer.exports" />
+    <None Include="ol\renderer\webgl\webglmapcolor.glsl" />
+    <None Include="ol\renderer\webgl\webglmapdefault.glsl" />
+    <None Include="ol\renderer\webgl\webgltilelayer.glsl" />
+    <None Include="ol\renderer\webgl\webglvectorlayer2linestringcollection.glsl" />
+    <None Include="ol\renderer\webgl\webglvectorlayer2pointcollection.glsl" />
+    <None Include="ol\source.jsdoc" />
+    <None Include="ol\source\bingmapssource.exports" />
+    <None Include="ol\source\debugtilesource.exports" />
+    <None Include="ol\source\mapquestsource.exports" />
+    <None Include="ol\source\osmsource.exports" />
+    <None Include="ol\source\singleimagewmssource.exports" />
+    <None Include="ol\source\source.exports" />
+    <None Include="ol\source\stamensource.exports" />
+    <None Include="ol\source\staticimagesource.exports" />
+    <None Include="ol\source\tiledwmssource.exports" />
+    <None Include="ol\source\tilejsonsource.exports" />
+    <None Include="ol\source\tilesource.exports" />
+    <None Include="ol\source\vectorsource.exports" />
+    <None Include="ol\source\vectorsource2.exports" />
+    <None Include="ol\source\wmssource.exports" />
+    <None Include="ol\source\wmtssource.exports" />
+    <None Include="ol\style.exports" />
+    <None Include="ol\style.jsdoc" />
+    <None Include="ol\tilegrid.jsdoc" />
+    <None Include="ol\tilegrid\tilegrid.exports" />
+    <None Include="ol\tilegrid\wmtstilegrid.exports" />
+    <None Include="ol\tilegrid\xyztilegrid.exports" />
+    <None Include="ol\view2d.exports" />
+    <None Include="ol\webgl\shader.mustache" />
+    <None Include="ol\webgl\webgl.exports" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1511</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

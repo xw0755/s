@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>领导决策支持系统</title>
+<link href="style/inc.css" rel="stylesheet" type="text/css" />
+<link href="style/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+function dohidden()
+{	
+	
+   if(document.getElementById("leftcontent").style.display="block")
+	{
+		document.getElementById("leftcontent").style.display = "none";
+		//document.getElementById("NPanZoomBarControl_17").style.left= "265px";
+		//document.getElementById("anniu").style.left = "265px";
+		document.getElementById("displaybtn").style.display="block";
+		document.getElementById("hiddenbtn").style.display="none";
+		
+	}
+ 
+}
+function doDis()
+{
+	if(document.getElementById("leftcontent").style.display="none")
+	{
+		document.getElementById("leftcontent").style.display = "block";
+		//document.getElementById("NPanZoomBarControl_17").style.left= "265px";
+		//document.getElementById("anniu").style.left = "265px";
+		//tstr.src = "images/arrow01.png";
+		document.getElementById("hiddenbtn").style.display="block";
+		document.getElementById("displaybtn").style.display="none";
+		
+		
+	}
+}
+</script>
+</head>
+
+<body>
+<div class="main">
+  <div class="top1_bg">
+    <div class="top1">
+      <div  class="nav">
+	  <div class="top_title">
+                <table border="0" cellspacing="0px" cellpadding="0">
+                    <tr>
+                        <td height="30" width="30" align="center" valign="bottom" onclick="setTab('zlayer_id')" title="搜索定位">
+                         <div style="width: 62px; height: 30px;">
+                            <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image9','','images/sj1_02.png',1)">
+                                <img src="images/sj1_01.png" name="Image9" width="30" height="29" border="0" id="Image9" /></a>
+                                </div>
+                        </td>
+                        <td height="30" width="30" align="center" valign="bottom" onclick="setTab('sousuo_id')" title="图层管理">
+                             <div style="width: 62px; height: 30px;"><a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image10','','images/sj2_02.png',1)">
+                                <img src="images/sj2_01.png" name="Image10" width="30" height="30" border="0" id="Image10" /></a> </div>
+                        </td>
+                        <td height="32" align="center" valign="bottom" onclick="setTab('pro_id')" title="资源管理">
+                           <div style="width: 62px; height: 30px;">  <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image11','','images/sj3_02.png',1)">
+                                <img src="images/sj3_01.png" name="Image11" width="30" height="30" border="0" id="Image11" /></a> </div>
+                        </td>
+                        <td height="32" align="center" valign="bottom" onclick="setTab('hzaj_id')" title="火灾案件">
+                           <div style="width: 62px; height: 30px;">  <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image12','','images/sj4_02.png',1)">
+                                <img src="images/sj4_01.png" name="Image12" width="30" height="30" border="0" id="Image12" /></a> </div>
+                        </td>
+                        <td height="32" align="center" valign="bottom" onclick="setTab('pjzh_id')" title="扑救指挥">
+                           <div style="width: 62px; height: 30px;">  <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image13','','images/sj5_02.png',1)">
+                                <img src="images/sj5_01.png" name="Image13" width="30" height="30" border="0" id="Image13" /></a> </div>
+                        </td>
+                        <td height="32" align="center" valign="bottom" onclick="setTab('zhpg_id')" title="灾后评估">
+                            <div style="width: 62px; height: 30px;"> <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image14','','images/sj6_02.png',1)">
+                                <img src="images/sj6_01.png" name="Image14" width="30" height="30" border="0" id="Image14" /></a> </div>
+                        </td>
+                        <td height="32" align="center" valign="bottom" onclick="setTab('ybjc_id')" title="预报监测">
+                           <div style="width: 62px; height: 30px;">  <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image15','','images/sj7_02.png',1)">
+                                <img src="images/sj7_01.png" name="Image15" width="30" height="30" border="0" id="Image15" /></a> </div>
+                        </td>
+                        <td height="32" align="center" valign="bottom" onclick="setTab('fzjc_id')" title="辅助决策">
+                          <div style="width: 62px; height: 30px;">   <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image16','','images/sj8_02.png',1)">
+                                <img src="images/sj8_01.png" name="Image16" width="30" height="30" border="0" id="Image16" /></a> </div>
+                        </td>
+                        <td height="32" align="center" valign="bottom" onclick="setTab('zhgl_id')" title="综合管理">
+                          <div style="width: 52px; height: 30px;">   <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image17','','images/sj9_02.png',1)">
+                                <img src="images/sj9_01.png" name="Image17" width="30" height="30" border="0" id="Image17" /></a> </div>
+                        </td>
+                     
+                      
+                    </tr>
+                    <tr>
+                        <td align="center" valign="top" id="sousuo" onclick="setTab('zlayer_id')">
+                            <a href="#">搜索定位</a>
+                        </td>
+                        <td  align="center" valign="top" id="zlayer" onclick="setTab('sousuo_id')">
+                            <a href="#">图层管理</a>
+                        </td>
+                        <td  align="center" valign="top" id="pro" onclick="setTab('pro_id')">
+                            <a href="#">资源管理</a>
+                        </td>
+                        <td  align="center" valign="top" id="hzaj" onclick="setTab('hzaj_id')">
+                            <a href="#">火灾案件</a>
+                        </td>
+                        <td  align="center" valign="top" id="pjzh" onclick="setTab('pjzh_id')">
+                            <a href="#">扑救指挥</a>
+                        </td>
+                        <td  align="center" valign="top" id="zhpg" onclick="setTab('zhpg_id')">
+                            <a href="#">灾后评估</a>
+                        </td>
+                        <td  align="center" valign="top" id="ybjc" onclick="setTab('ybjc_id')">
+                            <a href="#">预报监测</a>
+                        </td>
+                        <td  align="center" valign="top" id="fzjc" onclick="setTab('fzjc_id')">
+                            <a href="#">辅助决策</a>
+                        </td>
+                        <td  align="left" valign="top" id="zhgl" onclick="setTab('zhgl_id')">
+                            <a href="#">综合管理</a>
+                        </td>
+                      
+                    </tr>
+                </table>
+            </div>
+         </div>
+	  <div class="top_content">
+            
+        </div>
+     
+    </div> 
+  </div>
+  <div class="top2_bg"></div>
+  <div class="left"  id="leftcontent">
+    <div class="left_bg">
+      <div class="left_content1">
+        <div class="left_title1">
+          <ul>
+            <li class="left_title1_text">政务专题</li>
+            <li class="left_title1_img"><a href="#"><img src="images/close.png" /></a></li>
+          </ul>
+        </div>
+        <div class="left_title1_content"></div>
+      </div>
+      
+      <div class="left_content2">
+        <div class="left_title2">
+          <ul>
+            <li class="left_title2_text">宏观经济</li>
+            <li class="left_title2_img"><a href="#"><img src="images/close.png" /></a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="left_content3">
+        <div class="left_title3">
+          <ul>
+            <li class="left_title3_text">日常经济信息</li>
+            <li class="left_title3_img"><a href="#"><img src="images/close.png" /></a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="left_content4">
+        <div class="left_title4">
+          <ul>
+            <li class="left_title4_text">公告</li>
+            <li class="left_title4_img"><a href="#"><img src="images/close.png" /></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+       
+  </div>
+</div>
+ <div class="arrow" id="hiddenbtn"><a href="#"><img src="images/arrow_left.png"  class="anniu" onclick="dohidden()"/></a></div>
+<div class="arrow2" id="displaybtn" style="left:0px;display:none;"><a href="#"><img src="images/arrow_right.png"  class="anniu" onclick="doDis()"/></a></div>
+</div> 
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.png">
+
+    <title>sina open</title>
+
+    <!-- Bootstrap core CSS-->
+	  <link rel="stylesheet" href="http://192.168.0.22:8011/css/ol.css" type="text/css"> 
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+	 <link href="dist/css/docs.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+		 
+	<script src="dist/js/jquery-2.0.3.js" charset="utf-8"></script>
+	
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1166443256" type="text/javascript" charset="utf-8"></script>
+	<style>
+	  
+	</style>	
+	</head>
+	<body>
+	 <div id="wb_follow_btn" style="width:50em;height:80px;border:1px solid #bbb;background:#eee; padding:5px 2px;">关注按钮容器</div>
+					<script>
+					WB2.anyWhere(function(W){
+						W.widget.followButton({
+							'nick_name': '姚晨',	//用户昵称
+							'id': "wb_follow_btn"
+						});
+					});
+					</script>
+	
+	 
+	<script src="http://192.168.0.22:8011/goog/closure/goog/base.js" type="text/javascript"></script>
+	<script src="http://192.168.0.22:8011/goog/closure/goog/deps.js" type="text/javascript"></script>
+	<script src="http://192.168.0.22:8011/goog/closure/goog/ol/ol/ol.js" type="text/javascript"></script>	
+	<script src="js/Chart.js"></script>
+	   
+	</body>
+</html>

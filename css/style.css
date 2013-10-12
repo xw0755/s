@@ -1,0 +1,66 @@
+html {height:100%; overflow:hidden}
+body { margin:0px; padding:0px; height:100%;} 
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgblock{
+	width: 34px;
+	height: 34px;
+}
+.glyphicon-ssdw{
+	background-image:url(../images/sj1_01.png); 
+} 
+ .bs-glyphicons li:hover .glyphicon-ssdw    {
+	background-image:url(../images/sj1_02.png); 
+}
+.glyphicon-tcgl{
+	background-image:url(../images/sj2_01.png); 
+}
+ .bs-glyphicons li:hover .glyphicon-tcgl    {
+	background-image:url(../images/sj2_02.png); 
+} 
+.glyphicon-zygl{
+	background-image:url(../images/sj3_01.png); 
+} 
+ .bs-glyphicons li:hover .glyphicon-zygl    {
+	background-image:url(../images/sj3_02.png); 
+} 
+ .glyphicon-jcaj {
+	background-image:url(../images/sj4_01.png); 
+} 
+ .bs-glyphicons li:hover .glyphicon-jcaj    {
+	background-image:url(../images/sj4_02.png); 
+} 
+ .glyphicon-zngj{
+	background-image:url(../images/sj5_01.png); 
+} 
+ .bs-glyphicons li:hover .glyphicon-zngj    {
+	background-image:url(../images/sj5_02.png); 
+} 
+ .glyphicon-jczc {
+	background-image:url(../images/sj6_01.png); 
+} 
+ .bs-glyphicons li:hover .glyphicon-jczc    {
+	background-image:url(../images/sj6_02.png); 
+} 
+ .glyphicon-tjnj {
+	background-image:url(../images/sj7_01.png); 
+} 
+ .bs-glyphicons li:hover .glyphicon-tjnj    {
+	background-image:url(../images/sj7_02.png); 
+} 
+ .glyphicon-gzfw  {
+	background-image:url(../images/sj8_01.png); 
+} 
+ .bs-glyphicons li:hover .glyphicon-gzfw    {
+	background-image:url(../images/sj8_02.png); 
+} 
+ .glyphicon-ggtz{
+	background-image:url(../images/sj9_01.png); 
+} 
+ .bs-glyphicons li:hover .glyphicon-ggtz    {
+	background-image:url(../images/sj9_02.png); 
+} 
