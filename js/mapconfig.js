@@ -8,7 +8,15 @@ goog.require('ol.source.OSM');
 goog.require('ol.source.WMTS');
 goog.require('ol.tilegrid.WMTS');
 goog.require('ol.Overlay');
-goog.require('ol.layer');
+goog.require('ol.style.Icon');
+goog.require('ol.style.Style');
+goog.require('ol.parser.GeoJSON');
+
+var areaData = {
+	
+}
+
+
 
 
 

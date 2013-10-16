@@ -1,4 +1,6 @@
 var Map,heatmapLayer;
+//document.oncontextmenu=new Function("event.returnValue=false"); 
+//document.onselectstart=new Function("event.returnValue=false"); 
 $(document).ready(function () { 
 
 	$('#map').css('height',$('body').height()- $('.navbar').height());
@@ -29,7 +31,7 @@ $(document).ready(function () {
 	  layers: [
 		new ol.layer.TileLayer({
 		  source: new ol.source.WMTS({
-			url: 'http://192.168.0.22:9000/44/wmts',//'http://v2.suite.opengeo.org/geoserver/gwc/service/wmts/',
+			url: 'http://192.168.0.22:9000/36/wmts',//'http://v2.suite.opengeo.org/geoserver/gwc/service/wmts/',
 			layer: 'medford:buildings',
 			matrixSet: 'EPSG:4326',
 			format: 'image/png',
@@ -53,9 +55,7 @@ $(document).ready(function () {
 	
 	initmenu();
 	
-	Map.on('click',function(e){
-		console.dir(e.coordinate_);
-	});
+	Map.on('click',function(e){console.dir(e.coordinate_);});
 });
 
 function initmenu(){
@@ -71,14 +71,97 @@ function initmenu(){
 			 
 				switch (_type){
 					case 'glyphicon-ssdw': 
-					console.dir(_type);
+					 var request = $.ajax({
+					  url: "temp/search.html",
+					  //data:{type :$(_self).attr('href')},
+					  type: "POST",							  
+					  dataType: "html"
+					});
+					 
+					request.done(function(data) {
+						
+					 
+					 $('#Modal .modal-body').html(data);
+					 $('#Modal').css('top',$('#map').height() - $('#Modal').height());
+					});
+				 
+				request.fail(function(jqXHR, textStatus) {
+				  alert( "Request failed: " + textStatus );
+				});
 					
 					getLocation();
 					break;
 					case 'glyphicon-tcgl':
 					console.dir(_type);
 					break;
-					case 'glyphicon-zygl' :console.dir(_type);  break;
+					case 'glyphicon-zygl' :
+
+					var flickerAPI ="http://222.143.36.23/proxy/FeatureServer.ashx?layer=ylws&page=1&version=2&where=&maxfeatures=100&request=query&callback=?";
+					$.getJSON( flickerAPI, { 
+						format: "json"
+					  })
+						.done(function( data ) {
+						 
+						                    
+						 /* <ul class="media-list">
+						  <li class="media">
+							<a class="pull-left" href="#"><img class="media-object" data-src="holder.js/27x35" alt="64x64" style="width: 27px; height: 34px;" src="countbtn/icon_index_1_0.png">
+							</a>
+							<div class="media-body">
+							  <h4 class="media-heading">中国人寿保险股份有限公司济源支公司</h4>
+							  <p>河南省济源市沁园中路431号</p>
+							</div>
+						  </li>
+					     <ul> */
+							var style = new ol.style.Style({
+									  symbolizers: [
+										new ol.style.Icon({
+										  url: 'images/icon.png',
+										  yOffset: -22
+										})
+									  ]
+									});
+									var vector = new ol.layer.Vector({
+									  source: new ol.source.Vector({
+										parser: new ol.parser.GeoJSON(),
+										data: data.content
+									  }),
+									  style: style
+									});
+							Map.addLayer(vector);
+							
+							var popup = new ol.Overlay({
+							  element: $("#popup")
+							});
+							Map.addOverlay(popup);
+							Map.on('click',function(e){
+		 
+							Map.getFeatures({
+								pixel: e.getPixel(),
+								layers: [vector],
+								success: function(layerFeatures) {
+								  var feature = layerFeatures[0][0];
+								  if (feature) {
+									var geometry = feature.getGeometry();
+									var coord = geometry.getCoordinates();
+									popup.setPosition(coord);
+									$("#popup").popover({
+									  'placement': 'top',
+									  'html': true,
+									  'content': feature.get('name')
+									});
+									$("#popup").popover('show');
+								  } else {
+									$("#popup").popover('destroy');
+								  }
+								}
+							  });
+						});
+						}); 
+						 
+
+
+					break;
 					case 'glyphicon-jcaj'  :console.dir(_type); break;
 					case 'glyphicon-zngj'  : 
 						var request = $.ajax({
@@ -138,11 +221,20 @@ function initmenu(){
 							});
 							 
 							request.done(function(data) {
-							 $('#Modal #people').html('<hr/>'+
-										'<center><h3>人口基本情况</h3><center>'+
+							 $('#Modal #people').html('<br/>'+
+										'年份：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="timeSlider" value="" /><br/>'+
 										'<canvas id="peoplebar" height="360" width="420"></canvas>');
-			 
-							
+			 //http://www.eyecon.ro/bootstrap-slider/
+							$('.timeSlider').slider({
+								min:1995,
+								max:2000,
+								step:1,
+								tooltip:'show',
+								formater:function(v){
+									return v + "年";
+								}
+								}).on('slideStop', function(ev){console.dir(ev);console.dir(++i);});
+							 
 							var barChartData = {
 									labels : ["1月","2月","3月","4月","5月","6月","7月"],
 									datasets : [
@@ -150,31 +242,19 @@ function initmenu(){
 											fillColor : "rgba(220,220,220,0.5)",
 											strokeColor : "rgba(220,220,220,1)",
 											data : [65,59,90,81,56,55,40]
-										},
-										{
-											fillColor : "rgba(151,187,205,0.5)",
-											strokeColor : "rgba(151,187,205,1)",
-											data : [28,48,40,19,96,27,100]
-										}
+										} 
 									]
 									
 								};
 
 							var myLine = new Chart(document.getElementById("peoplebar").getContext("2d")).Bar(barChartData);
 							$('#Modal').css('top',$('#map').height() - $('#Modal').height());
+							/* 
 							if(heatmapLayer == undefined){
 								heatmapLayer = new Heatmap.Layer("Heatmap");
-							}
+							} */
 							//chart2Map();
-							for(var i = 0;i<data.datapar.length;i++){
-							 var canvas  = document.createElement('canvas'),
-								//获取2d canvas上下文（如果不支持canvas，这个对象是不存在的）
-								canvasContext    = canvas.getContext("2d");
-							   
-								// 设置canvas的宽度和高度
-								canvas.width = 90;
-								canvas.height = 90;
-								var doughnutData = [
+							var doughnutData = [
 									{
 										value: 30,
 										color:"#F7464A"
@@ -197,19 +277,30 @@ function initmenu(){
 									}
 								
 								];
+								
+								
+							for(var i = 0;i<data.datapar.length;i++){
+							 var canvas  = document.createElement('canvas'),
+								//获取2d canvas上下文（如果不支持canvas，这个对象是不存在的）
+								canvasContext    = canvas.getContext("2d");
+							   
+								// 设置canvas的宽度和高度
+								canvas.width = 90;
+								canvas.height = 90;
+								
 								var myDoughnut = new Chart(canvasContext).Doughnut(doughnutData,{animation :false});
 							   var overlay = new ol.Overlay({
 								  element: canvas
 								});	 
 								  overlay.setPosition(data.datapar[i]); 
-								 // Map.addOverlay(overlay);
+								  Map.addOverlay(overlay);
 									  
-								  heatmapLayer.addSource(new Heatmap.Source(new OpenLayers.LonLat(data.datapar[i])[0], data.datapar[i])[1]);
+								 // heatmapLayer.addSource(new Heatmap.Source(new OpenLayers.LonLat(data.datapar[i])[0], data.datapar[i])[1]);
 								  
 								  }
  
-									Map.addLayer(heatmapLayer);
-									Map.zoomToExtent(heatmapLayer.getDataExtent());
+									//Map.addLayer(heatmapLayer);
+									//Map.zoomToExtent(heatmapLayer.getDataExtent());
 		
 							});
 							 
@@ -240,8 +331,62 @@ function initmenu(){
 						$('#Modal .modal-body').html(vhtml);
 						
 						taptrigger('gzfwTab');
+						$('#gzfwTab a:first').trigger('click'); 
 						break;
-					case 'glyphicon-ggtz' :console.dir(_type); break;
+					case 'glyphicon-ggtz' :
+
+						request = $.ajax({
+								  url: "curl.php", 
+								  type: "GET",
+								  data:{url:'http://www.henan.gov.cn/zwgk/zwdt/zfdt/'},
+								  dataType: "html"
+								});
+								 
+							request.done(function(data) { 
+							var titles = $(data).find('td[width="832"]');
+							var times  = $(data).find('td[width="145"]');
+							
+							
+							var vhtml = '<table class="table table-condensed">'
+									/* +'<thead>'
+									  +'<tr>'
+										 
+										+'<th>标题</th>'
+										+'<th>发布时间</th>'
+										 
+									  +'</tr>'
+									+'</thead>' */
+									+'<tbody>';
+									 
+									 
+								
+							for(var i = 0; i<9;i++){
+								 vhtml +='<tr>'
+										 
+										+'<td>'+titles[i].innerHTML+'</td>'
+										+'<td>'+times[i].innerHTML+'</td>'
+										 
+									  +'</tr>';
+							 }
+							 	vhtml +='</tbody>';
+								  vhtml +='</table>';
+							 $('#Modal .modal-body').html(vhtml);
+							 $('#Modal .modal-body').find('a').attr('href',function(){
+								var _self = this;
+							 if(_self.href.indexOf('http')>-1){
+								return _self.href.replace(location.origin + location.pathname.replace(new RegExp(/\/[^\/]+$/),''),  'http://218.28.136.21:8081/');}
+								else{
+									return _self.href = 'http://218.28.136.21:8081/'+_self.href;
+								}
+								 
+							 }); 
+							 $('#Modal .modal-body').find('a').attr('target','_Blank');
+							});
+							 
+							request.fail(function(jqXHR, textStatus) {
+							  alert( "Request failed: " + textStatus );
+							});
+					break;
 				}
 			  
 		   });
@@ -256,7 +401,17 @@ function getLocation(){
 		navigator.geolocation.getCurrentPosition(function(position){
 			 //定位
 			// console.dir(position);
-			 Map.getView().setCenter([position.coords.longitude,position.coords.latitude]);
+			
+			$("#position").css("display","block");
+			 
+			   var overlay = new ol.Overlay({
+					  element: $("#position")
+					});	
+					
+		    overlay.setPosition([position.coords.longitude,position.coords.latitude]); 
+		    Map.addOverlay(overlay);
+		    Map.getView().setCenter([position.coords.longitude,position.coords.latitude]);
+			 
 			  
 			 
 		},reportProblem,{timeout:45000});
@@ -294,25 +449,38 @@ function taptrigger(id){
 		  
 		  //在这里请求水电气暖数据
 		   var _self = this;
-		  var request = $.ajax({
-			  url: "temp/search.html",
-			  data:{type :$(_self).attr('href')},
-			  type: "POST",							  
-			  dataType: "html"
-			});
+		   var _type = $(_self).attr('href');
+		   switch (_type){
+				case '#water':
+			  
+				break;
+				case '#electricity':
+					var request = $.ajax({
+					  url: "curlPost.php",
+					  //data:{type :$(_self).attr('href')},
+					  type: "POST",							  
+					  dataType: "html"
+					});
+					 
+					request.done(function(data) {
+						var t = $(data).find('table')[2];
+					  $(t).find('tr td').filter(':first-child').remove();
+					  $(t).find('tr td').filter(':last-child').remove();
+					  $(t).addClass("table");
+					 $('#Modal #electricity').html(t); 
+					  $('#Modal').css('top',65);//$('#map').height() - $('#Modal').height());
+					  $("#Modal").width(800);
+					  $("#Modal").css("margin-left",-100);
+					});
+					 
+					request.fail(function(jqXHR, textStatus) {
+					  alert( "请求失败: " + textStatus );
+					});
+				break;
+			}
 			 
-			request.done(function(data) {
-			
-			  $('#Modal #water').html(data);
-			 
-			 $('#Modal').css('top',$('#map').height() - $('#Modal').height());
-			});
-			 
-			request.fail(function(jqXHR, textStatus) {
-			  alert( "Request failed: " + textStatus );
-			});
 	});
-	$('#'+id+' a:first').trigger('click'); 
+	
 }
 
 

@@ -64,3 +64,6 @@ body { margin:0px; padding:0px; height:100%;}
  .bs-glyphicons li:hover .glyphicon-ggtz    {
 	background-image:url(../images/sj9_02.png); 
 } 
+.timeSlider{
+	width:340px;
+}
