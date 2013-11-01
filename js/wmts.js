@@ -1,6 +1,8 @@
 var Map,heatmapLayer;
 //document.oncontextmenu=new Function("event.returnValue=false"); 
 //document.onselectstart=new Function("event.returnValue=false"); 
+
+var datacache;
 $(document).ready(function () { 
 
 	$('#map').css('height',$('body').height()- $('.navbar').height());
@@ -22,9 +24,9 @@ $(document).ready(function () {
 	  matrixIds[z] =  z;
 	}
 	view = new ol.View2D({
-		center: [113.632276, 34.6959575],
+		center: [113.67753828252178,34.75001452744813],
 		projection: projection,
-		zoom: 10
+		zoom: 8
 	  });
  
 	Map = new ol.Map({
@@ -121,16 +123,16 @@ function initmenu(){
 										})
 									  ]
 									});
-									var vector = new ol.layer.Vector({
+									/* var vector = new ol.layer.Vector({
 									  source: new ol.source.Vector({
 										parser: new ol.parser.GeoJSON(),
 										data: data.content
 									  }),
 									  style: style
 									});
-							Map.addLayer(vector);
+							Map.addLayer(vector); */
 							
-							var popup = new ol.Overlay({
+							/* var popup = new ol.Overlay({
 							  element: $("#popup")
 							});
 							Map.addOverlay(popup);
@@ -156,7 +158,7 @@ function initmenu(){
 								  }
 								}
 							  });
-						});
+						}); */
 						}); 
 						 
 
@@ -191,21 +193,8 @@ function initmenu(){
 							});
 						break;
 					case 'glyphicon-jczc'  : 
-					 
-					var vhtml = '<ul class="nav nav-pills nav-justified"  id="jczcTab">'+
-									  '<li><a href="#people">人口</a></li>'+
-									  '<li><a href="#social">社会</a></li>'+
-									  '<li><a href="#industry">工业</a></li>'+
-									  '<li><a href="#economic">经济</a></li>'+
-									'</ul>'+
-									'<div class="tab-content">'+
-									  '<div class="tab-pane fade" id="people"></div>'+
-									  '<div class="tab-pane fade" id="social">...</div>'+
-									  '<div class="tab-pane fade" id="industry">...</div>'+
-									  '<div class="tab-pane fade" id="economic">...</div>'+
-									'</div>'
-									;
-					$('#Modal .modal-body').html(vhtml);
+					 jczcDom();
+					
 					$('#jczcTab a').click(function (e) {
 						  e.preventDefault()
 						  $(this).tab('show');
@@ -213,100 +202,20 @@ function initmenu(){
 						  
 						  //在这里请求水电气暖数据
 						   var _self = this;
-						  var request = $.ajax({
-							  url: "data/geo.js",
-							  data:{type :$(_self).attr('href')},
-							  type: "POST",							  
-							  dataType: "json"
+						   var type = $(_self).attr('href');
+						  
+							$(type+" input[name='optionsRadios']")[1].checked= true
+							 $(type+' select option').remove();
+							initLDJC(type,$(type+" input[name='optionsRadios']:checked").val());
+							
+							$(type+" input[name='optionsRadios']").change(function(){
+								 $(type+' select option').remove()
+								 initLDJC(type,$(this).val()); 
 							});
-							 
-							request.done(function(data) {
-							 $('#Modal #people').html('<br/>'+
-										'年份：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="timeSlider" value="" /><br/>'+
-										'<canvas id="peoplebar" height="360" width="420"></canvas>');
-			 //http://www.eyecon.ro/bootstrap-slider/
-							$('.timeSlider').slider({
-								min:1995,
-								max:2000,
-								step:1,
-								tooltip:'show',
-								formater:function(v){
-									return v + "年";
-								}
-								}).on('slideStop', function(ev){console.dir(ev);console.dir(++i);});
-							 
-							var barChartData = {
-									labels : ["1月","2月","3月","4月","5月","6月","7月"],
-									datasets : [
-										{
-											fillColor : "rgba(220,220,220,0.5)",
-											strokeColor : "rgba(220,220,220,1)",
-											data : [65,59,90,81,56,55,40]
-										} 
-									]
-									
-								};
-
-							var myLine = new Chart(document.getElementById("peoplebar").getContext("2d")).Bar(barChartData);
-							$('#Modal').css('top',$('#map').height() - $('#Modal').height());
-							/* 
-							if(heatmapLayer == undefined){
-								heatmapLayer = new Heatmap.Layer("Heatmap");
-							} */
-							//chart2Map();
-							var doughnutData = [
-									{
-										value: 30,
-										color:"#F7464A"
-									},
-									{
-										value : 50,
-										color : "#46BFBD"
-									},
-									{
-										value : 100,
-										color : "#FDB45C"
-									},
-									{
-										value : 40,
-										color : "#949FB1"
-									},
-									{
-										value : 120,
-										color : "#4D5360"
-									}
-								
-								];
-								
-								
-							for(var i = 0;i<data.datapar.length;i++){
-							 var canvas  = document.createElement('canvas'),
-								//获取2d canvas上下文（如果不支持canvas，这个对象是不存在的）
-								canvasContext    = canvas.getContext("2d");
-							   
-								// 设置canvas的宽度和高度
-								canvas.width = 90;
-								canvas.height = 90;
-								
-								var myDoughnut = new Chart(canvasContext).Doughnut(doughnutData,{animation :false});
-							   var overlay = new ol.Overlay({
-								  element: canvas
-								});	 
-								  overlay.setPosition(data.datapar[i]); 
-								  Map.addOverlay(overlay);
-									  
-								 // heatmapLayer.addSource(new Heatmap.Source(new OpenLayers.LonLat(data.datapar[i])[0], data.datapar[i])[1]);
-								  
-								  }
- 
-									//Map.addLayer(heatmapLayer);
-									//Map.zoomToExtent(heatmapLayer.getDataExtent());
-		
-							});
-							 
-							request.fail(function(jqXHR, textStatus) {
-							  alert( "Request failed: " + textStatus );
-							});
+						if(datacache == undefined){
+							datacache = {};
+						}
+						  
 					});
 					$('#jczcTab a:first').trigger('click'); 
 					 				
@@ -314,15 +223,15 @@ function initmenu(){
 					case 'glyphicon-tjnj'  : console.dir(_type);break;
 					case 'glyphicon-gzfw' :
 						var vhtml = '<ul class="nav nav-pills nav-justified"  id="gzfwTab">'+
-									  '<li><a href="#water">水</a></li>'+
 									  '<li><a href="#electricity">电</a></li>'+
+									  '<li><a href="#water">水</a></li>'+ 
 									  '<li><a href="#gas">气</a></li>'+
 									  '<li><a href="#warm">暖</a></li>'+
 									'</ul>'+
 									
 									'<div class="tab-content">'+
-									  '<div class="tab-pane fade" id="water">...</div>'+
 									  '<div class="tab-pane fade" id="electricity">...</div>'+
+									  '<div class="tab-pane fade" id="water">...</div>'+ 
 									  '<div class="tab-pane fade" id="gas">...</div>'+
 									  '<div class="tab-pane fade" id="warm">...</div>'+
 									'</div>'
@@ -335,7 +244,7 @@ function initmenu(){
 						break;
 					case 'glyphicon-ggtz' :
 
-						request = $.ajax({
+						  var  request = $.ajax({
 								  url: "curl.php", 
 								  type: "GET",
 								  data:{url:'http://www.henan.gov.cn/zwgk/zwdt/zfdt/'},
@@ -348,18 +257,7 @@ function initmenu(){
 							
 							
 							var vhtml = '<table class="table table-condensed">'
-									/* +'<thead>'
-									  +'<tr>'
-										 
-										+'<th>标题</th>'
-										+'<th>发布时间</th>'
-										 
-									  +'</tr>'
-									+'</thead>' */
-									+'<tbody>';
-									 
-									 
-								
+								 
 							for(var i = 0; i<9;i++){
 								 vhtml +='<tr>'
 										 
@@ -485,7 +383,351 @@ function taptrigger(id){
 
 
 
+function initLDJC(type,id){
+	var request = $.ajax({
+		  url: "http://192.168.0.25:8001/selfp/TNapi/GetNameByParent/"+id,
+		 // data:{type :$(_self).attr('href')},
+		 //url:'data/data.js',
+		  type: "GET",							  
+		  dataType: "json"
+		});
+	 
+	request.done(function(data) {
+	 
+//http://www.eyecon.ro/bootstrap-slider/
+	 datacache[type] = data;
+	// 在这里监听单选按钮的变化;
 
+	
+	$('#Modal').css('top',$('#map').height() - $('#Modal').height());
+		Chart2map(type,data);
+		//Chart2map(mapData);
+		 
+	});
+	 
+	request.fail(function(jqXHR, textStatus) {
+	  alert( "Request failed: " + textStatus );
+	});
+}
+function initSliderChart(type,newlabels,newtimes,newcols,q){
+if(newcols.length != 1){
+$.each(newlabels, function (index, value) {
+    $(type+' select').append($('<option>', { 
+        value: value,
+        text : value 
+    }));
+});
+}
+ 
+  
+ $(type+' .timeSlider').slider({
+		min:2001,
+		max:newtimes.max(),
+		step:1,
+		value:newtimes[0],
+		tooltip:'show',
+		formater:function(v){
+			return v + "年";
+		}
+		}).on('slideStop', function(ev){
+				//createbar(panelData,ev.value);
+				createbar(type,q,ev.value,newcols,$(type+" select").find("option:selected").text())
+		}); 
+		createbar(type,q,newtimes[0],newcols,$(type+" select").find("option:selected").text());
+	
+		$(type+" select").change(function () {
+		createbar(type,q,newtimes[0],newcols,$(type+" select").find("option:selected").text());  
+	  })
+}
+function createbar(type,q,time,cols,label){ 
+	var panelData = {}; 
+	//var st = q[newtimes[0]][$('#people select').text()];
+	panelData.labels = [];
+	panelData.datasets = [];
+	var obj = {};
+	obj.fillColor = "rgba(102,204,255,0.5)";
+	obj.strokeColor = "rgba(102,204,255,1)";
+	obj.data = [];
+		
+	if(cols.length ==1){
+		var st = q[time];
+		for(var i in st){
+			panelData.labels.push(i);
+			obj.data.push(st[i][cols[0]][0]);
+		}
+		panelData.datasets.push(obj);
+	}else{
+		var st = q[time][label];
+		
+		for(var i in st){
+			panelData.labels.push(i);
+			obj.data.push(st[i][0]);
+		}
+		panelData.datasets.push(obj);
+	}
+
+	 var myLine = new Chart(document.getElementById(type.slice(1)+"bar").getContext("2d")).Bar(panelData);
+	 
+} 
+
+function getpanelData(data){
+	
+}
+function getMapData(data){
+	
+}
+function Chart2map(type,data){
+var doughnutData = [];
+	 
+		var p ={}, areas = [];
+		var q = {}, labels = [],times= [],cols=[];
+		for(var i= 0; i<data.length;i++){
+			//if(data[i].areaname =="总 计") continue;
+			if(data[i].typename1 =="总户数"){
+				if(p[data[i].areaname] ==undefined)
+				{
+					p[data[i].areaname] = [];
+				}
+					p[data[i].areaname].push(data[i].tatol);
+					
+					areas.push(data[i].areaname); 
+			}
+			else{
+				if(q[data[i].years]== undefined){
+					q[data[i].years] = {};
+					
+				}
+				if(q[data[i].years][data[i].typename1] == undefined){
+						q[data[i].years][data[i].typename1] = {}; 
+					}
+				if(q[data[i].years][data[i].typename1][data[i].areaname] == undefined){
+						q[data[i].years][data[i].typename1][data[i].areaname] = [];
+					}
+				q[data[i].years][data[i].typename1][data[i].areaname].push(parseInt(data[i].tatol));
+				
+				labels.push(data[i].typename1);
+				times.push(data[i].years);
+				cols.push(data[i].areaname);
+			}
+		}
+		
+		var newlabels = labels.unique();
+		var newtimes  = times.unique();
+		var newcols   = cols.unique();
+		 
+		initSliderChart(type,newlabels,newtimes,newcols,q);
+		var newareas = areas.unique();
+		 colors = ['#104C4C', '#88CCCC', '#228E8E', '#CCFFFF', '#00CCCC', '#3399CC'];
+		
+	for(var i = 0;i<newareas.length;i++){
+		
+		var canvas  = document.createElement('canvas'),
+		//获取2d canvas上下文（如果不支持canvas，这个对象是不存在的）
+		canvasContext    = canvas.getContext("2d");
+	   
+		// 设置canvas的宽度和高度
+		canvas.width = 90;
+		canvas.height = 90;
+		for(var n = 0; n < p[newareas[i]].length;n++){
+			var nutdata = {};
+			nutdata.value = parseInt(p[newareas[i]][n]);
+			nutdata.color = colors[n];
+			doughnutData.push(nutdata);
+		}
+	 
+		//var myDoughnut = new Chart(canvasContext).Doughnut(doughnutData,{animation :false});
+		var myDoughnut = new Chart(canvasContext).Doughnut(doughnutData);
+	    var overlay = new ol.Overlay({
+		  element: canvas
+		});	 
+		  overlay.setPosition(areapoi[newareas[i]]); 
+		  Map.addOverlay(overlay);
+			  
+		 doughnutData = [];
+		  
+	}
+}
+
+function jczcDom(){
+	var vhtml = '<ul class="nav nav-pills nav-justified"  id="jczcTab">'+
+					  '<li><a href="#people">人口</a></li>'+
+					  '<li><a href="#social">社会</a></li>'+
+					  '<li><a href="#industry">工业</a></li>'+
+					  '<li><a href="#economic">经济</a></li>'+
+					'</ul>'+
+					'<div class="tab-content">'+
+					  '<div class="tab-pane fade" id="people">'+  
+					  '<br/>'+
+						 
+						  '<div class="form-group">'+
+							'<label for="timeSlider" class="col-sm-2 control-label">年份:</label>'+
+							'<div class="col-sm-10">'+
+							  '<input  type="text" class="timeSlider" />'+
+							'</div>'+
+						  '</div><br/>'+
+						 
+						 '<div class="form-group">'+
+							'<label class="col-sm-2 control-label">类别:</label>'+
+							'<div class="col-sm-10">'+
+							  '<select  class="form-control" ></select>'+
+							'</div>'+
+						  '</div>'+
+						
+						'<canvas id="peoplebar" height="360" width="420"></canvas><br/><br/>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="rkjbqk" value="1">'+
+							'人口基本情况'+
+						  '</label>'+
+						'</div>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="rkzr" value="5" >'+
+							'人口自然变动情况'+
+						  '</label>'+
+						'</div>'+/* 
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="shld" value="9" >'+
+							'社会劳动者总数'+
+						  '</label>'+
+						'</div>'+ */
+					  '</div>'+
+					  '<div class="tab-pane fade" id="social">'+
+					  '<br/>'+
+						
+						 '<div class="form-group">'+
+							'<label for="timeSlider" class="col-sm-2 control-label">年份:</label>'+
+							'<div class="col-sm-10">'+
+							  '<input  type="text" class="timeSlider" />'+
+							'</div>'+
+						  '</div><br/>'+
+						 
+						 '<div class="form-group">'+
+							'<label class="col-sm-2 control-label">类别:</label>'+
+							'<div class="col-sm-10">'+
+							  '<select  class="form-control" ></select>'+
+							'</div>'+
+						  '</div>'+
+						  
+						'<canvas id="socialbar" height="360" width="420"></canvas><br/><br/>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="rkjbqk" value="11">'+
+							'城市设施水平'+
+						  '</label>'+
+						'</div>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="rkzr" value="26" >'+
+							'市政设施及公共交通'+
+						  '</label>'+
+						'</div>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="shld" value="37" >'+
+							'卫生事业基本情况'+
+						  '</label>'+
+						'</div>'+ 
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="shld" value="10" >'+
+							'法人单位从业人数'+
+						  '</label>'+
+						'</div>'+
+					  '</div>'+
+					  '<div class="tab-pane fade" id="industry">'+
+					  '<br/>'+
+						 '<div class="form-group">'+
+							'<label for="timeSlider" class="col-sm-2 control-label">年份:</label>'+
+							'<div class="col-sm-10">'+
+							  '<input  type="text" class="timeSlider" />'+
+							'</div>'+
+						  '</div><br/>'+
+						 
+						 '<div class="form-group">'+
+							'<label class="col-sm-2 control-label">类别:</label>'+
+							'<div class="col-sm-10">'+
+							  '<select  class="form-control" ></select>'+
+							'</div>'+
+						  '</div>'+
+						'<canvas id="industrybar" height="360" width="420"></canvas><br/><br/>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="rkjbqk" value="41">'+
+							'社会消费品零售总额'+
+						  '</label>'+
+						'</div>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="rkzr" value="42" >'+
+							'工业企业单位数'+
+						  '</label>'+
+						'</div>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="shld" value="43" >'+
+							'工业总产值'+
+						  '</label>'+
+						'</div>'+ 
+					  '</div>'+
+					  '<div class="tab-pane fade" id="economic">'+
+					  '<br/>'+
+						 '<div class="form-group">'+
+							'<label for="timeSlider" class="col-sm-2 control-label">年份:</label>'+
+							'<div class="col-sm-10">'+
+							  '<input  type="text" class="timeSlider" />'+
+							'</div>'+
+						  '</div><br/>'+
+						 
+						 '<div class="form-group">'+
+							'<label class="col-sm-2 control-label">类别:</label>'+
+							'<div class="col-sm-10">'+
+							  '<select  class="form-control" ></select>'+
+							'</div>'+
+						  '</div>'+
+						'<canvas id="economicbar" height="360" width="420"></canvas><br/><br/>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="rkjbqk" value="44">'+
+							'生产总值'+
+						  '</label>'+
+						'</div>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="rkzr" value="50" >'+
+							'金融机构人民币信贷收支'+
+						  '</label>'+
+						'</div>'+
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="shld" value="53" >'+
+							'国有独资商业银行人民币信贷收支'+
+						  '</label>'+
+						'</div>'+ 
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="shld" value="54" >'+
+							'财政收入'+
+						  '</label>'+
+						'</div>'+ 
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="shld" value="55" >'+
+							'财政支出'+
+						  '</label>'+
+						'</div>'+ 
+						'<div class="radio">'+
+						  '<label>'+
+							'<input type="radio" name="optionsRadios" id="shld" value="56" >'+
+							'固定资产投资'+
+						  '</label>'+
+						'</div>'+ 
+					  '</div>'+
+					'</div>'
+					;
+	$('#Modal .modal-body').html(vhtml);
+}
 
 
 

@@ -1,9 +1,4 @@
-	 
-	 
-
- 
-	
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		   <meta charset="utf-8">
@@ -29,16 +24,9 @@
 	<body>
 	 
 	<button onclick = "foo()">world</button>
-	
-	       <div class="row-fluid">
-        <div class="span12">
-          <div id="map" class="map">
-            <div id="popup"></div>
-          </div>
-        </div>        
-      </div>
- <input type="text" class="timeSlider" value="" />
-	
+	 
+          <div id="map"> 
+          </div> 
 	<script src="dist/js/transition.js"></script>
     <script src="dist/js/alert.js"></script>
     <script src="dist/js/modal.js"></script>
@@ -57,21 +45,9 @@
 	<script src="http://192.168.0.22:8011/goog/closure/goog/ol/ol/ol.js" type="text/javascript"></script>	
 	<script src="js/Chart.js"></script>
 	<script src="js/mapconfig.js" type="text/javascript"></script>
-	 <script src="js/heatmap.js"></script>
+	 
     <script type="text/javascript">
-	$(document).ready(function () { 
-	var  i = 0;
-	//http://www.eyecon.ro/bootstrap-slider/
-		$('.timeSlider').slider({
-		min:1995,
-		max:2000,
-		step:1,
-		tooltip:'show',
-		formater:function(v){
-			return v + "年";
-		}
-		}).on('slideStop', function(ev){console.dir(ev);console.dir(++i)});
-	});
+ 
 	function foo(){
 	
 		var flickerAPI ="http://222.143.36.23/proxy/FeatureServer.ashx?layer=ylws&page=1&version=2&where=&maxfeatures=100&request=query&callback=?";
@@ -116,15 +92,15 @@ $('#map').css('height',$('body').height()- $('.navbar').height());
 	  // generate resolutions and matrixIds arrays for this WMTS
 	  resolutions[z] = size / Math.pow(2, z);
 	  //matrixIds[z] = 'EPSG:4326:' + z;
-	  matrixIds[z] =  z;
+	  matrixIds[z] =  'EPSG:4326:' +z;
 	}
-	view = new ol.View2D({
+	var view = new ol.View2D({
 		center: [113.632276, 34.6959575],
 		projection: projection,
 		zoom: 10
 	  });
  
-	Map = new ol.Map({
+	var Map = new ol.Map({
 	  layers: [
 		new ol.layer.TileLayer({
 		  source: new ol.source.WMTS({
@@ -142,7 +118,7 @@ $('#map').css('height',$('body').height()- $('.navbar').height());
 			style: '_null',
 			extent: [113.078889,114.185663,34.412735,34.979180]//[-13682835, -13667473, 5204068, 5221690]
 		  })
-		}),vector 
+		}),vector  
 	  ],
 	  renderer: ol.RendererHint.CANVAS,
 	  target: 'map',

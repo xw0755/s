@@ -774,8 +774,8 @@ window.Chart = function(context){
 				ctx.fillStyle = 'black';
 				ctx.textBaseline = 'middle';
 				 
-				ctx.fillText(segmentTotal, width/2 - 20, height/2, 200);
-			
+				//ctx.fillText(segmentTotal, width/2 - 20, height/2, 200);
+			ctx.fillText(segmentTotal, 0,-(height), 200);
 			for (var i=0; i<data.length; i++){
 				var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (Math.PI*2));
 				ctx.beginPath();
